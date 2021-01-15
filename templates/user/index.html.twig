@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+
+		<br><br><br>
+	<div class="container text-center">
+		  <h1>Super Compte de {{user.firstName}}</h1><br><br>
+	
+		
+
+			<div class="row">
+				<div class="col-6">
+					<img src="{{user.picture}}">
+				</div>
+				<div class="col-6">
+					
+					<span class="bagde badge-danger">{{user.ads | length}} annonces</span><br>
+
+				{% if (user is same as(app.user)) %}
+					<a href="{{path('account_profile')}}" class="btn btn-outline-danger mt-3 mb-3">Modifier mon compte</a><br>
+					<a href="{{path('account_password')}}" class="btn btn-outline-danger mt-3 mb-3">Modifier le mot de passe</a><br>
+				{% endif %}
+
+				</div>
+			</div>
+				<br>
+			<div class="text-center">
+				<p>{{user.description}}</p>
+			</div>
+
+			<br><br>
+			<h2>Toutes les annonces de {{user.firstName}}</h2>
+
+			<div class="row">
+
+
+				{% if (user.ads | length) > 0 %}
+
+				{% for ad in user.ads %}
+					<div class="col-4 mt-4">
+						
+						<div class="card text-center">
+						  <div class="card-header">{{ad.rooms}} Chambres à partir de {{ad.price}}/nuit<br>Pas encore de notes</div>
+						  <div class="card-body">
+							{% for img in ad.imageUploads %}
+								 {% if loop.first %}
+									<img src="{{img.url}}" style="height:200px;display:block;margin:auto;">
+								{% endif %}
+							{% endfor %}
+						  	 <!-- | striptags filtre les balises choisies en html -->
+						    <h5 class="card-title mt-3">{{ad.title | striptags('<i><strong>') | raw}}</h5>
+						    <!-- | raw filtre toutes le html -->
+						    <p class="card-text">{{ad.introduction | raw}}</p>
+						    <a href="{{path('ads_show',{'slug':ad.slug})}}" class="btn btn-danger">En savoir plus</a>
+						  </div>
+						</div>
+					</div>
+				{% endfor %}
+			{% else %}
+				<div>
+					<div class="alert alert-danger">Il n'y a pas d'annonces !</div>
+				</div>	
+			{% endif %}
+
+			</div>
+
+
+
+	</div>
+
+{% endblock %}
+

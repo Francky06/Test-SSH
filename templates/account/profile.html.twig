@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% form_theme form with _self %}
+
+{% block title %}Modification du profil{% endblock %}
+{% block body %}
+
+
+	<br><br>
+
+	<h1 class="text-center">Modification Profil</h1><br>
+
+		<div class="col-8 m-auto">
+		{{ form_start (form) }}	
+		<div class="text-center">
+		Nom: {{user.lastname}}<br> 
+		Prénom: {{user.firstname}}<br>
+		 </div><br>
+			
+		{{ form_row (form.email, {'label':false, 'attr': {'placeholder': "Entrer votre mail"}}) }}<br>
+		{{ form_row (form.picture, {'label':false, 'attr': {'placeholder': "Images url"}}) }}<br>	
+		{{ form_row (form.introduction, {'label':false, 'attr': {'placeholder': "Entrez votre intro"}}) }}<br>	
+		{{ form_row (form.description, {'label':false, 'attr': {'placeholder': "Description"}}) }}<br>	
+	
+		<div class="text-center">
+		<button type="submit" class="btn btn-danger">Modif</button>
+		</div>
+		</div>
+		{{ form_end (form) }}
+		
+{% endblock %}
+	

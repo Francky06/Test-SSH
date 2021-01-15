@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+{% form_theme form with _self %}
+
+{% block title %}Creation Annonce {% endblock %}
+{% block body %}
+
+
+	<br><br>
+
+	<h1 class="text-center">Test Creation</h1><br>
+
+		<div class="col-8 m-auto">
+		{{ form_start (form) }}		
+		{{ form_row (form.title, {'label':false, 'attr': {'placeholder': "Entrer le titre"}}) }}<br>		
+		{{ form_row (form.coverImage, {'label':false, 'attr': {'placeholder': "Images url"}}) }}<br>		
+		{{ form_row (form.introduction, {'label':false, 'attr': {'placeholder': "Introduction"}}) }}<br>		
+		{{ form_row (form.content, {'label':false, 'attr': {'placeholder': "Entrer le contenu"}}) }}<br>		
+		{{ form_row (form.rooms, {'label':false, 'attr': {'placeholder': "Entrer le nombre de chambres", 'min':1}}) }}<br>		
+		{{ form_row (form.price, {'label':false, 'attr': {'placeholder': "Entrer le prix"}}) }}<br>
+		{{ form_row (form.images) }}<br>
+		{{ form_row (form.file) }}
+		</div>
+		<div class="text-center m-auto">
+		<button type="button" id="add_image" class="btn btn-outline-danger">Ajouter une image</button><br><br>
+		
+		<button type="submit" class="btn btn-danger ">Créer une Annonce</button>
+		</div>
+		{{ form_end (form) }}
+		
+{% endblock %}
+	{# prototype = theme #}
+	{% block _annonce_images_entry_row %}
+		<div class="row" id="{{id}}">
+			<div class="col">
+				{{ form_row(form.url, {'label':false, 'attr': {'placeholder': "Entrer une image"}}) }}
+
+
+			</div>
+			<div class="col">
+				{{ form_row(form.caption,  {'label':false, 'attr': {'placeholder': "Entrer une legende"}}) }}
+
+			</div>
+			<div class="col-2">
+				<button type="button" class="btn btn-danger del_image" data-bloc="{{id}}">X</button>
+			</div>
+		</div>
+{% endblock %}
+
+
+
+{# ancré dans la base.html.twig, fichier app.js normal #}
+
+{% block javascripts %}
+	<script type="text/javascript" src="/js/ad.js">
+
+	</script>
+{% endblock %}

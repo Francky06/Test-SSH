@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!{% endblock %}
+
+{% block body %}
+{{prenom}} {{dump(tableau)}} 
+
+
+{% set variable = 'Francky' %}
+	{{variable}}
+	{{variable | upper}}
+	{{variable | raw}}
+
+
+ 	 {% if age > 18 %} 
+ 		<p>Tu es majeur</p>                                     
+	 {% else %}  
+	 	<p>Tu es mineur</p>         
+	 {% endif %} 
+
+	{% for prenom,age in tableau %}
+		{% if loop.first or loop.last %}
+			<p><b>{{prenom}} a {{age}} ans </b></p>
+		{% else %}
+			<p> {{prenom}} a {{age}} ans</p>
+		{% endif %}
+	{% endfor %}
+
+
+	{% for prenom,age in tableau %}
+		<p>{{loop.index}}: {{prenom}} a {{age}} ans </p>
+	{% endfor %}
+
+
+	
+
+	{% for compteur in 0..10 %}
+		{{compteur}}
+	{% endfor %}
+
+
+{% endblock %}
+

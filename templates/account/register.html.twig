@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% form_theme form with _self %}
+
+{% block title %}Inscription{% endblock %}
+{% block body %}
+
+
+	<br><br>
+
+	<h1 class="text-center">Inscription</h1><br>
+
+		<div class="col-8 m-auto">
+		{{ form_start (form) }}		
+		{{ form_row (form.firstName, {'label':false, 'attr': {'placeholder': "Entrer votre prenom"}}) }}<br>	
+		{{ form_row (form.lastName, {'label':false, 'attr': {'placeholder': "Entrer votre nom"}}) }}<br>	
+		{{ form_row (form.email, {'label':false, 'attr': {'placeholder': "Entrer votre mail"}}) }}<br>
+		{{ form_row (form.picture, {'label':false, 'attr': {'placeholder': "Images url"}}) }}<br>	
+		{{ form_row (form.hash, {'label':false, 'attr': {'placeholder': "Entrez votre Mdp"}}) }}<br>
+		{{ form_row (form.confirm_hash, {'label':false, 'attr': {'placeholder': "Confirmez votre Mdp"}}) }}<br>
+		{{ form_row (form.introduction, {'label':false, 'attr': {'placeholder': "Entrez votre intro"}}) }}<br>	
+		{{ form_row (form.description, {'label':false, 'attr': {'placeholder': "Description"}}) }}<br>	
+	
+		<div class="text-center">
+		<button type="submit" class="btn btn-danger">Inscription</button>
+		</div>
+		</div>
+		{{ form_end (form) }}
+		
+{% endblock %}
+	

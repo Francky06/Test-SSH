@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes les annonces{% endblock %}
+
+
+{% block body %}
+
+
+	<br><br>
+
+	<h1 class="text-center">Les Annonces vedettes</h1>
+	<div class="row mb-4 p-5 m-0">
+
+
+			
+		{% for ad in ads %}
+		<div class="col-4 mt-4">
+			
+			<div class="card text-center">
+			  <div class="card-header">{{ad.rooms}} Chambres à partir de {{ad.price}}/nuit<br>Pas encore de notes</div>
+			  <div class="card-body">
+				{% for img in ad.imageUploads %}
+					 {% if loop.first %}
+						<img src="{{img.url}}" style="height:200px;display:block;margin:auto;">
+					{% endif %}
+				{% endfor %}
+			  	 <!-- | striptags filtre les balises choisies en html -->
+			    <h5 class="card-title mt-3">{{ad.title | striptags('<i><strong>') | raw}}</h5>
+			    <!-- | raw filtre toutes le html -->
+			    <p class="card-text">{{ad.introduction | raw}}</p>
+			    <a href="{{path('ads_show',{'slug':ad.slug})}}" class="btn btn-danger">En savoir plus</a>
+			  </div>
+			</div>
+		</div>
+		{% endfor %}
+
+		</div>
+		
+	
+		
+
+{% endblock %}
+
